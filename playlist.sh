@@ -7,10 +7,10 @@ YOUTUBE_DL="yt-dlp"  # Adjust the path if necessary
 FFMPEG="ffmpeg"  # Adjust the path if necessary
 
 # YouTube Playlist URL
-PLAYLIST_URL="https://www.youtube.com/playlist?list=PLN-4sMgMCpaXDLwZLharzXlhRhiuRF38F"  # Replace with your playlist URL
+PLAYLIST_URL="$1"  # Replace with your playlist URL
 
 # Output directory for MP3 files
-OUTPUT_DIR="/home/lucian303/Desktop/yt-dl/music"  # Set your desired output directory
+OUTPUT_DIR="./music"  # Set your desired output directory
 
 # Path to the cookies file
 COOKIES_FILE="./cookies.txt"  # Replace with the full path to your cookies.txt
@@ -32,6 +32,12 @@ fi
 # Check if cookies file exists
 if [ ! -f "$COOKIES_FILE" ]; then
   echo "Error: Cookies file not found at $COOKIES_FILE." >&2
+  exit 1
+fi
+
+# Check if a URL is provided
+if [ -z "$1" ]; then
+  echo "Usage: $0 <youtube_playlist_url>"
   exit 1
 fi
 
