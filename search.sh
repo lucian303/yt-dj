@@ -11,7 +11,7 @@ search_and_download() {
     # yt-dlp's ytsearch can directly download the best audio format
     yt-dlp --extract-audio --audio-format mp3 \
            --audio-quality 192K \
-           -o "%(title)s.%(ext)s" \
+           -o "music/%(title)s.%(ext)s" \
            "ytsearch${num_results}:${query}"
 }
 
