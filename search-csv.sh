@@ -21,9 +21,9 @@ if [ -z "$1" ]; then
 fi
 
 # Read the CSV file and process each line
-while IFS=',' read -r track artist album _; do
+while IFS=',' read -r track artist _; do
     # Concatenate the first three columns to form the search query
-    query="${track} ${artist} ${album}"
+    query="${track} ${artist}"
     
     # Call the download function with the query
     search_and_download "$query" 1
