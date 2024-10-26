@@ -3,6 +3,7 @@
 # Function to search YouTube and download audio
 search_and_download() {
     local query="$1"
+    local base_dir="${2:-./music}"  # Default to current directory if not provided
     local num_results="${2:-1}"
 
     echo "Searching for: $query"
@@ -10,7 +11,8 @@ search_and_download() {
     # Search and download audio using yt-dlp
     yt-dlp --extract-audio --audio-format mp3 \
            --audio-quality 192K \
-           -o "music/%(title)s.%(ext)s" \
+           --download-archive "${base_dir}/downloaded.txt" \
+           -o "${base_dir}/%(title)s.%(ext)s" \
            "ytsearch${num_results}:${query}"
 }
 

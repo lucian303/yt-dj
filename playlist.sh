@@ -1,33 +1,7 @@
 #!/bin/bash
 
-# Set the path to yt-dlp or youtube-dl
-YOUTUBE_DL="yt-dlp"  # Adjust the path if necessary
-
-# Path to ffmpeg (if not in PATH)
-FFMPEG="ffmpeg"  # Adjust the path if necessary
-
-# YouTube Playlist URL
-PLAYLIST_URL="$1"  # Replace with your playlist URL
-
-# Output directory for MP3 files
-OUTPUT_DIR="./music"  # Set your desired output directory
-
 # Path to the cookies file
 COOKIES_FILE="./cookies.txt"  # Replace with the full path to your cookies.txt
-
-
-
-# Check if yt-dlp is installed
-if ! [ -x "$(command -v $YOUTUBE_DL)" ]; then
-  echo "Error: yt-dlp or youtube-dl is not installed." >&2
-  exit 1
-fi
-
-# Check if ffmpeg is installed
-if ! [ -x "$(command -v $FFMPEG)" ]; then
-  echo "Error: ffmpeg is not installed." >&2
-  exit 1
-fi
 
 # Check if cookies file exists
 if [ ! -f "$COOKIES_FILE" ]; then
@@ -41,18 +15,14 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-# Create the output directory if it doesn't exist
-if [ ! -d "$OUTPUT_DIR" ]; then
-  mkdir -p "$OUTPUT_DIR"
-fi
-
 # Download and convert playlist videos to MP3 using cookies for authentication
-$YOUTUBE_DL --cookies "$COOKIES_FILE" --extract-audio --audio-format mp3 --audio-quality 0 --output "$OUTPUT_DIR/%(title)s.%(ext)s" "$PLAYLIST_URL"
+base_dir="${2:-./music}"  # Default to current directory if not provided
+yt-dlp --cookies "$COOKIES_FILE" --extract-audio --audio-format mp3 --audio-quality 0 --output "$base_dir/%(title)s.%(ext)s" "$1"
 
 # Check if download was successful
 if [ $? -eq 0 ]; then
-  echo "Private playlist downloaded and converted to MP3 successfully."
+  echo "Playlist downloaded and converted to MP3 successfully."
 else
-  echo "Error downloading or converting the private playlist."
+  echo "Error downloading or converting thel playlist."
   exit 1
 fi

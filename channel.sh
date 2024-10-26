@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Function to download all videos from a channel and convert to MP3
+# Function to download all videos from a channel and convert them to MP3
 download_channel_as_mp3() {
     local channel_url="$1"
     local base_dir="${2:-./music}"  # Default to current directory if not provided
@@ -11,11 +11,10 @@ download_channel_as_mp3() {
     echo "Downloading all videos from channel: $channel_url"
     echo "Saving MP3 files to: $base_dir"
 
-    # Use yt-dlp to download videos and extract audio as MP3
-    yt-dlp --extract-audio --audio-format mp3 \
-           --audio-quality 192K \
-           -o "${base_dir}/%(title)s.%(ext)s" \
-           "$channel_url"
+    # Download all videos and extract audio, skipping already downloaded ones
+    yt-dlp --yes-playlist --extract-audio --audio-format mp3 \
+           --audio-quality 192K --download-archive "${base_dir}/downloaded.txt" \
+           -o "${base_dir}/%(title)s.%(ext)s" "$channel_url"
 }
 
 # Check if the channel URL is provided

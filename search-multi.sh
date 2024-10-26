@@ -4,13 +4,15 @@
 search_and_download() {
     local query="$1"
     local num_results="${2:-1}"
+    local base_dir="${2:-./music}"  # Default to current directory if not provided
 
     echo "Searching for: $query"
     
     # Use yt-dlp to search and download the best audio format
     yt-dlp --extract-audio --audio-format mp3 \
            --audio-quality 192K \
-           -o "music/%(title)s.%(ext)s" \
+           --download-archive "${base_dir}/downloaded.txt" \
+           -o "${base_dir}/%(title)s.%(ext)s" \
            "ytsearch${num_results}:${query}"
 }
 

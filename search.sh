@@ -4,6 +4,7 @@
 search_and_download() {
     query="$1"
     num_results="${2:-1}"
+    local base_dir="${2:-./music}"  # Default to current directory if not provided
 
     # Use yt-dlp to search for videos and extract the video URLs
     echo "Searching for: $query"
@@ -11,7 +12,7 @@ search_and_download() {
     # yt-dlp's ytsearch can directly download the best audio format
     yt-dlp --extract-audio --audio-format mp3 \
            --audio-quality 192K \
-           -o "music/%(title)s.%(ext)s" \
+           -o "${base_dir}/%(title)s.%(ext)s" \
            "ytsearch${num_results}:${query}"
 }
 
