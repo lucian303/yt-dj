@@ -4,7 +4,7 @@
 search_and_download() {
     local query="$1"
     local base_dir="${2:-./music}"  # Default to current directory if not provided
-    local num_results="${2:-1}"
+    local num_results="${3:-1}"
 
     echo "Searching for: $query"
     
@@ -28,5 +28,5 @@ while IFS=',' read -r track artist _; do
     query="${track} ${artist}"
     
     # Call the download function with the query
-    search_and_download "$query" 1
+    search_and_download "$query" "$2" 1
 done < "$1"

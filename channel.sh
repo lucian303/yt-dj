@@ -1,4 +1,4 @@
-#!/bin/bash
+    #!/bin/bash
 
 # Function to download all videos from a channel and convert them to MP3
 download_channel_as_mp3() {
