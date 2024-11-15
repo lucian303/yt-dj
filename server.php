@@ -1,5 +1,14 @@
 <?php
 header("Content-Type: application/json"); // Set content type to JSON for the response
+header("Access-Control-Allow-Origin: *"); // CORS
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    // Respond to the preflight request
+    http_response_code(200); // No Content
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the raw POST data and decode it as JSON
