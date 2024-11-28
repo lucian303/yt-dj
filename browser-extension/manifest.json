@@ -8,5 +8,10 @@
   },
   "action": {
     "default_popup": "popup.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "download-to-mixxx@lucianux.com"
+    }
   }
 }
