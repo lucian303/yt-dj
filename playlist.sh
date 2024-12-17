@@ -17,7 +17,7 @@ fi
 
 # Download and convert playlist videos to MP3 using cookies for authentication
 base_dir="${2:-./music}"  # Default to current directory if not provided
-yt-dlp --cookies "$COOKIES_FILE" --download-archive "${base_dir}/downloaded.txt" --extract-audio --audio-format mp3 --audio-quality 0 --output "$base_dir/%(title)s.%(ext)s" "$1"
+yt-dlp --cookies "$COOKIES_FILE" --download-archive "${base_dir}/downloaded.txt" --extract-audio --audio-format m4a --audio-quality 320k --output "$base_dir/%(title)s.%(ext)s" "$1"
 
 # Check if download was successful
 if [ $? -eq 0 ]; then

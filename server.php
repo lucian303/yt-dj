@@ -1,3 +1,5 @@
+#! /usr/bin/php
+
 <?php
 header("Content-Type: application/json"); // Set content type to JSON for the response
 header("Access-Control-Allow-Origin: *"); // CORS

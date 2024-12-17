@@ -9,8 +9,8 @@ search_and_download() {
     echo "Searching for: $query"
     
     # Search and download audio using yt-dlp
-    yt-dlp --extract-audio --audio-format mp3 \
-           --audio-quality 192K \
+    yt-dlp --extract-audio --audio-format m4a \
+           --audio-quality 320K \
            --download-archive "${base_dir}/downloaded.txt" \
            -o "${base_dir}/%(title)s.%(ext)s" \
            "ytsearch${num_results}:${query}"

@@ -8,7 +8,7 @@ fi
 
 # Download and convert video to MP3
 base_dir="${1:-./music}"  # Default to current directory if not provided
-yt-dlp --extract-audio --audio-format mp3 --audio-quality 0 --output "${base_dir}/%(title)s.%(ext)s" "$2"
+yt-dlp --extract-audio --audio-format m4a --audio-quality 320K --output "${base_dir}/%(title)s.%(ext)s" "$2"
 
 # Check if the download was successful
 if [ $? -eq 0 ]; then

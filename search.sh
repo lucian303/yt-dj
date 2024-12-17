@@ -10,8 +10,8 @@ search_and_download() {
     echo "Searching for: $query"
     
     # yt-dlp's ytsearch can directly download the best audio format
-    yt-dlp --extract-audio --audio-format mp3 \
-           --audio-quality 192K \
+    yt-dlp --extract-audio --audio-format m4a \
+           --audio-quality 320K \
            -o "${base_dir}/%(title)s.%(ext)s" \
            "ytsearch${num_results}:${query}"
 }

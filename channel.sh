@@ -12,8 +12,8 @@ download_channel_as_mp3() {
     echo "Saving MP3 files to: $base_dir"
 
     # Download all videos and extract audio, skipping already downloaded ones
-    yt-dlp --yes-playlist --extract-audio --audio-format mp3 \
-           --audio-quality 192K --download-archive "${base_dir}/downloaded.txt" \
+    yt-dlp --yes-playlist --extract-audio --audio-format m4a \
+           --audio-quality 320K --download-archive "${base_dir}/downloaded.txt" \
            -o "${base_dir}/%(title)s.%(ext)s" "$channel_url"
 }
 
